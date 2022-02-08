@@ -18,7 +18,7 @@ namespace Identity_Service_API.Controllers.Login
         [HttpPost]
         public async Task<IActionResult> AuthenticateUser([FromBody]AuthUser auth)
         {
-            var user = loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
+            var user = await loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
             if (user == null)
                 return NotFound();
             else
