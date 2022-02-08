@@ -23,6 +23,8 @@ namespace ApplicationInfrastructure.Context
         public DbSet<ClientDetail> Client_Detail { get; set; }
         public DbSet<ClientAccountDetail> ClientAccount_Detail { get; set; }
         public virtual DbSet<UserResponse> UR { get; set; }
+        public virtual DbSet<ClientResponse> CR { get; set; }
+        public virtual DbSet<UserAuthRole> UAR { get; set; }
         
     }
 }

@@ -21,12 +21,23 @@ namespace ApplicationInfrastructure.Repositories
 
         public LoginRepository(DBcontext storeContext, IMapper mapper)
         {
-            this.storeContext=storeContext;
-            this.mapper=mapper;
+            this.storeContext = storeContext;
+            this.mapper = mapper;
         }
-        public async Task<List<UserResponse>> ValidateLoginDetails(string username, string password)=>
-            await storeContext.UR.FromSqlInterpolated($"Exec getUserDetailOnRoleBasis'{username}','{password}'").ToListAsync();
-
-
+        public async Task<List<UserResponse>> ValidateLoginDetails(string username, string password)
+        {
+            var response = await storeContext.UR.FromSqlRaw("Exec getUserDetailOnRoleBasis @Username,@password",new SqlParameter("@Username", username),new SqlParameter("@password",password)).ToListAsync();
+            return response;
+        }
+        public async Task<List<UserAuthRole>> IsAuthenticated(string Username, string password)
+        {
+            var response = await storeContext.UAR.FromSqlRaw("Exec isauthenticate @Username,@password", new SqlParameter("@Username", Username), new SqlParameter("@password", password)).ToListAsync();
+            return response;
+        }
+        public async Task<List<ClientResponse>> ValidateclientResponses(string username, string password)
+        {
+            var response = await storeContext.CR.FromSqlRaw("Exec getUserDetailOnRoleBasis @Username,@password", new SqlParameter("@Username", username), new SqlParameter("@password", password)).ToListAsync();
+            return response;
+        }
     }
 }

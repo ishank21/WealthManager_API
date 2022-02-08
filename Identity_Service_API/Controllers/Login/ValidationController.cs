@@ -16,13 +16,38 @@ namespace Identity_Service_API.Controllers.Login
             this.loginRepository = loginRepository;
         }
         [HttpPost]
-        public async Task<IActionResult> AuthenticateUser([FromBody]AuthUser auth)
+        public async Task<IActionResult> AuthenticateUser([FromBody] AuthUser auth)
         {
-            var user = loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
-            if (user == null)
-                return NotFound();
+            dynamic Getvalues;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var getRole = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
+            if (getRole != null)
+                 Getvalues = getRole.FirstOrDefault();
             else
-                return Ok(user);
+                return NotFound();
+            if (Getvalues != null)
+            {
+                if ((Getvalues.isvalid == 1) && (Getvalues.roletype == "Agent" || Getvalues.roletype == "Admin"))
+                {
+                    var user = await loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
+                    if (user == null)
+                        return NotFound();
+                    else
+                        return Ok(user);
+                }
+                else if ((Getvalues.isvalid == 1 && (Getvalues.roletype == "Client")))
+                {
+                    var user = await loginRepository.ValidateclientResponses(auth.Username, auth.Password);
+                    if (user == null)
+                        return NotFound();
+                    else
+                        return Ok(user);
+                }
+            }
+                return NotFound();
+        }
         }
     }
-}
