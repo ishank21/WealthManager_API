@@ -25,11 +25,11 @@ namespace Identity_Service_API.Controllers.Login
             }
             var getRole = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
             if (getRole != null)
-                 Getvalues = getRole.FirstOrDefault();
+                Getvalues = getRole.FirstOrDefault();
             else
                 return NotFound();
-            if (Getvalues != null)
-            {
+            if (Getvalues!= null)
+                {
                 if ((Getvalues.isvalid == 1) && (Getvalues.roletype == "Agent" || Getvalues.roletype == "Admin"))
                 {
                     var user = await loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
