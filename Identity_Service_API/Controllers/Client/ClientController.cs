@@ -15,30 +15,29 @@ namespace Identity_Service_API.Controllers.Client
             this.clientRepository = clientRepository;
         }
         [HttpGet]
-        [Route("{agentId}")]
         public async Task<IActionResult> GetClientDetailsByAgentId(string agentId)
         {
             if (agentId!=null)
             {
                 var resp = await clientRepository.GetClientDetailsForAgent(agentId);
-                if (resp != null)
+                if (resp.Count > 0)
                 {
                     return Ok(resp);
                 }
                 else
-                    return Unauthorized();
-
+                    return Unauthorized("No matching Entry exist in DB with the given AgentId");
             }
             else
                 return BadRequest();  
         }
         [HttpGet]
+        [Route("{ClientId}")]
         public async Task<IActionResult> GetAccountDetailsByClientId(string clientId)
         {
             if (clientId != null)
             {
                 var resp = await clientRepository.GetAccountDetailsByClientId(clientId);
-                if (resp != null)
+                if (resp.Count > 0)
                 {
                     return Ok(resp);
                 }

@@ -17,13 +17,13 @@ namespace Identity_Service_API.Controllers.Agnet
         [HttpGet]
         public async Task<IActionResult> GetAgentDetails()
         {
-                var resp = await agentRepository.GetAgentDetails();
-                if (resp != null)
-                {
-                    return Ok(resp);
-                }
-                else
-                    return Unauthorized();
+            var resp = await agentRepository.GetAgentDetails();
+            if (resp.Count > 0)
+            {
+                return Ok(resp);
             }
+            else
+                return Unauthorized();
         }
+    }
 }
