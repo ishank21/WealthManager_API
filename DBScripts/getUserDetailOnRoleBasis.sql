@@ -1,21 +1,10 @@
 Alter PROCEDURE getUserDetailOnRoleBasis @Username NVARCHAR(15)  
- ,@Password NVARCHAR(30)  
 AS  
 BEGIN  
---Exec getUserDetailOnRoleBasis 'Ishank12','Ishank123#'  
+--Exec getUserDetailOnRoleBasis 'Ishank123'
   
  DECLARE @Emp_Role VARCHAR(10);  
- DECLARE @IsValid INT = 0;  
   
-    --To check if credntials are valid--  
- SELECT @isvalid = (  
-   SELECT 1  
-   FROM UserLogin_detail  
-   WHERE Upper([UserName]) = upper(@Username)  
-    AND  [Password] = @Password  
-   )  
-  
- IF (@isvalid = 1)  
   SELECT @Emp_Role = (  
     SELECT R.RoleType  
     FROM UserLogin_detail U  
@@ -30,6 +19,7 @@ BEGIN
    ,A.PhoneNo  
    ,U.hasActiveRole  
    ,R.RoleType  
+   ,A.AdminId 
   FROM Admin_detail A  
   INNER JOIN UserLogin_detail U ON U.UserId = A.AdminId  
   INNER JOIN Role_Detail R ON R.Id = U.roleId  
@@ -45,28 +35,34 @@ BEGIN
    ,A.pHoneNo  
    ,U.hasActiveRole  
    ,R.RoleType  
-   ,A.AgentId as AgentId
+   ,A.AgentId 
   FROM Agent_Detail A  
   INNER JOIN UserLogin_detail U ON U.UserId = A.AgentId  
   INNER JOIN Role_Detail R ON R.Id = U.roleId  
   WHERE upper(U.Username) = upper(@Username)  
  End   
- ELSE --For Client  
-  SELECT C.Firstname  
+ ELSE If(@Emp_Role='Client')  
+  SELECT u.Id,
+  u.userName,
+  u.UserId,
+  c.clientType ,
+  C.Firstname  
    ,c.lastname  
-   ,c.address  
+   ,c.Address 
    ,c.email  
-   ,c.clientType  
-   ,U.hasActiverole   
+   ,c.PhoneNo
+   ,u.hasActiveRole
+   ,c.AgentId
   FROM Client_Detail C  
-  INNER JOIN UserLogin_detail U ON U.userId = c.AgentiD  
+  INNER JOIN UserLogin_detail U ON U.userId = c.ClientId  
   WHERE Upper(U.Username) = Upper(@Username)  
 END  
---insert into  UserLogin_detail values ('Ishank12', 'Ishank123#', 'avbdhfhfjhf', 1, 0, 'AG1234')  
+--insert into  UserLogin_detail values ('Ishank123', 'Ishank12#', 'avbdhfhfjhf', 2, 0, 'CL1234') 
+--update UserLogin_Detail set UserId='AG1235' where 
 -- insert into Agent_Detail values('Ishank34','Khurana21','Ishank21@gmail.com','34-appstreet','989785','AG1234')  
 --update UserLogin_details set roleId=2 where id=3  
---insert into Role_Detail values (1,'Agent')  
---Insert into Client_Details values (1,'Ishank','Khurana','11,ABP street','ishankk21@hmail.com','292009',1,'CL12345','CL1234')  
+--insert into Role_Detail values (2,'Client')  
+--Insert into Client_Detail values ('CL1234','Khurana','ishank','ishankk21@hmail.com','11-abpstreet',1,'12345','AG1234')  
   
   
 -- select * from UserLogin_detail

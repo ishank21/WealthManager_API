@@ -14,6 +14,8 @@ namespace ApplicationCore
             services.AddDbContext<DBcontext>(options => 
             options.UseSqlServer(defaultConnectionString));
             services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             return services;
         }
      }

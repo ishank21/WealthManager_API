@@ -18,19 +18,15 @@ namespace Identity_Service_API.Controllers.Login
         [HttpPost]
         public async Task<IActionResult> AuthenticateUser([FromBody] AuthUser auth)
         {
-            dynamic Getvalues;
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            var getRole = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
-            if (getRole != null)
-                Getvalues = getRole.FirstOrDefault();
-            else
-                return NotFound();
-            if (Getvalues!= null)
-                {
-                if ((Getvalues.isvalid == 1) && (Getvalues.roletype == "Agent" || Getvalues.roletype == "Admin"))
+            var Role = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
+            var getRole = Role.FirstOrDefault();
+            if (getRole!= null)
+            {
+                if ((getRole.isvalid == 1) && (getRole.roletype == "Agent" || getRole.roletype == "Admin"))
                 {
                     var user = await loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
                     if (user == null)
@@ -38,7 +34,7 @@ namespace Identity_Service_API.Controllers.Login
                     else
                         return Ok(user);
                 }
-                else if ((Getvalues.isvalid == 1 && (Getvalues.roletype == "Client")))
+                else if (getRole.isvalid == 1 && getRole.roletype == "Client")
                 {
                     var user = await loginRepository.ValidateclientResponses(auth.Username, auth.Password);
                     if (user == null)
@@ -47,7 +43,7 @@ namespace Identity_Service_API.Controllers.Login
                         return Ok(user);
                 }
             }
-                return NotFound();
-        }
+            return Unauthorized("Username or password is not correct");
         }
     }
+}

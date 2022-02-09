@@ -25,6 +25,8 @@ namespace ApplicationInfrastructure.Context
         public virtual DbSet<UserResponse> UR { get; set; }
         public virtual DbSet<ClientResponse> CR { get; set; }
         public virtual DbSet<UserAuthRole> UAR { get; set; }
+        public virtual DbSet<AgentResponse> AR { get; set; }
+        public virtual DbSet<ClientAccountDetails> CAD { get; set; }
         
     }
 }
