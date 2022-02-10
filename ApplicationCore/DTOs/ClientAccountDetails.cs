@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.DTOs
 {
-    [Keyless]
     public class ClientAccountDetails
     {
-        [NotMapped]
-        public int? Id { get; set; }
+        //[Key]
+        public int Id { get; set; }
         public string AccountId { get; set; }
         public string ClientId { get; set; }
         public string CustodianId { get; set; }

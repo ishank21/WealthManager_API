@@ -9,8 +9,8 @@ namespace ApplicationCore.Interfaces
 {
     public interface ILoginRepository
     {
-        Task<List<UserResponse>> ValidateLoginDetails(string username, string password);
+        Task<List<UserResponse>> ValidateLoginDetails(string username);
         Task<List<UserAuthRole>> IsAuthenticated(string Username, string password);
-        Task<List<ClientResponse>> ValidateclientResponses(string username, string password);
+        Task<List<ClientResponse>> ValidateclientResponses(string username);
     }
 }

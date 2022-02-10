@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.DTOs
 {
-    [Keyless]
     public class ClientResponse
     {
-        [NotMapped]
-        public int? Id { get; set; }
+        //[Key]
+        public int Id { get; set; }
         public string userName { get; set; }
         public string? UserId { get; set; }
         public int? ClientType { get; set; }

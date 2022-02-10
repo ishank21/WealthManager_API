@@ -2,6 +2,8 @@
 using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Identity_Service_API.Controllers.Login
 {
@@ -15,6 +17,7 @@ namespace Identity_Service_API.Controllers.Login
         {
             this.loginRepository = loginRepository;
         }
+
         [HttpPost]
         public async Task<IActionResult> AuthenticateUser([FromBody] AuthUser auth)
         {
@@ -26,17 +29,17 @@ namespace Identity_Service_API.Controllers.Login
             var roleValue = authVal.FirstOrDefault();
             if (roleValue != null)
             {
-                if (roleValue.isvalid == 1 && (roleValue.roletype == "Agent" || roleValue.roletype == "Admin"))
+                if (roleValue.Isvalid == 1 && (roleValue.roletype == "Agent" || roleValue.roletype == "Admin"))
                 {
-                    var user = await loginRepository.ValidateLoginDetails(auth.Username, auth.Password);
+                    var user = await loginRepository.ValidateLoginDetails(auth.Username);
                     if (user.Count <= 0)
                         return NotFound();
                     else
                         return Ok(user);
                 }
-                else if (roleValue.isvalid == 1 && roleValue.roletype == "Client")
+                else if (roleValue.Isvalid == 1 && roleValue.roletype == "Client")
                 {
-                    var user = await loginRepository.ValidateclientResponses(auth.Username, auth.Password);
+                    var user = await loginRepository.ValidateclientResponses(auth.Username);
                     if (user.Count <= 0)
                         return NotFound();
                     else

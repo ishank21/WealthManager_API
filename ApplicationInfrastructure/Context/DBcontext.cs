@@ -16,17 +16,30 @@ namespace ApplicationInfrastructure.Context
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Query<UserResponse>();
+            modelBuilder.Query<ClientResponse>();
+            modelBuilder.Query<UserAuthRole>();
+            modelBuilder.Query<AgentResponse>();
+            modelBuilder.Query<ClientAccountDetails>();
+            //modelBuilder.Ignore<UserResponse>();
+            //modelBuilder.Ignore<ClientResponse>();
+            //modelBuilder.Ignore<UserAuthRole>();
+            //modelBuilder.Ignore<AgentResponse>();
+            //modelBuilder.Ignore<ClientAccountDetails>();
+        }
         public DbSet<UserLogin> UserLogin_Detail { get; set; }
         public DbSet<RoleMaster> Role_Detail { get; set; }
         public DbSet<AgentDetail> Agent_Detail { get; set; }
         public DbSet<AdminDetail> Admin_Detail { get; set; }
         public DbSet<ClientDetail> Client_Detail { get; set; }
         public DbSet<ClientAccountDetail> ClientAccount_Detail { get; set; }
-        public virtual DbSet<UserResponse> UR { get; set; }
-        public virtual DbSet<ClientResponse> CR { get; set; }
-        public virtual DbSet<UserAuthRole> UAR { get; set; }
-        public virtual DbSet<AgentResponse> AR { get; set; }
-        public virtual DbSet<ClientAccountDetails> CAD { get; set; }
+        public virtual DbQuery<UserResponse> UR { get; set; }
+        public virtual DbQuery<ClientResponse> CR { get; set; }
+        public virtual DbQuery<UserAuthRole> UAR { get; set; }
+        public virtual DbQuery<AgentResponse> AR { get; set; }
+        public virtual DbQuery<ClientAccountDetails> CAD { get; set; }
         
     }
 }

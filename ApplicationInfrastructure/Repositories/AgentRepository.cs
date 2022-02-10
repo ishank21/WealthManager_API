@@ -23,7 +23,7 @@ namespace ApplicationInfrastructure.Repositories
         }
         public async Task<List<AgentResponse>> GetAgentDetails()
         {
-            var response = await storeContext.AR.FromSqlRaw("Select * from getAgents").AsNoTracking().ToListAsync();
+            var response = await storeContext.AR.FromSql("Select * from getAgents").AsNoTracking().ToListAsync();
             return response;
 
         }

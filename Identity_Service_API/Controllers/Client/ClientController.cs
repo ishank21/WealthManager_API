@@ -1,6 +1,8 @@
 ﻿using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace Identity_Service_API.Controllers.Client
 {
@@ -17,7 +19,7 @@ namespace Identity_Service_API.Controllers.Client
         [HttpGet]
         public async Task<IActionResult> GetClientDetailsByAgentId(string agentId)
         {
-            if (agentId!=null)
+            if (agentId != null)
             {
                 var resp = await clientRepository.GetClientDetailsForAgent(agentId);
                 if (resp.Count > 0)
@@ -28,10 +30,10 @@ namespace Identity_Service_API.Controllers.Client
                     return Unauthorized("No matching Entry exist in DB with the given AgentId");
             }
             else
-                return BadRequest();  
+                return BadRequest();
         }
         [HttpGet]
-        [Route("{ClientId}")]
+        [Route("AccountDetailByClientID")]
         public async Task<IActionResult> GetAccountDetailsByClientId(string clientId)
         {
             if (clientId != null)
