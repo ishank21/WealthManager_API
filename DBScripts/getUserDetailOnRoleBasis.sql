@@ -1,8 +1,8 @@
-Alter PROCEDURE getUserDetailOnRoleBasis @Username NVARCHAR(15)  
+
+ALTER PROCEDURE [dbo].[getUserDetailOnRoleBasis] @Username NVARCHAR(15)  
 AS  
 BEGIN  
---Exec getUserDetailOnRoleBasis 'Ishank123'
-  
+  --Exec getUserDetailOnRoleBasis 'Ishank123'
  DECLARE @Emp_Role VARCHAR(10);  
   
   SELECT @Emp_Role = (  
@@ -13,13 +13,18 @@ BEGIN
     )  
  IF ( @Emp_Role = 'Admin')  
  BEGIN  
-  SELECT A.Firstname  
-   ,A.lastname  
+  SELECT 
+    A.Id,
+	A.AdminId as UserId,
+	U.userName,
+	A.Firstname  
+   ,A.lastname 
+   ,A.Address
    ,A.email  
    ,A.PhoneNo  
    ,U.hasActiveRole  
    ,R.RoleType  
-   ,A.AdminId 
+   ,'' AS AgentId
   FROM Admin_detail A  
   INNER JOIN UserLogin_detail U ON U.UserId = A.AdminId  
   INNER JOIN Role_Detail R ON R.Id = U.roleId  
@@ -29,13 +34,16 @@ BEGIN
  Else if(@Emp_Role = 'Agent')  
  Begin  
  SELECT A.id as Id,
+ A.AgentId AS UserId,
+ U.userName,
  A.Firstname  
-   ,A.lastname  
+   ,A.lastname 
+   ,A.Address
    ,A.email  
    ,A.pHoneNo  
    ,U.hasActiveRole  
    ,R.RoleType  
-   ,A.AgentId 
+   ,'' AS AgentId
   FROM Agent_Detail A  
   INNER JOIN UserLogin_detail U ON U.UserId = A.AgentId  
   INNER JOIN Role_Detail R ON R.Id = U.roleId  
@@ -51,10 +59,12 @@ BEGIN
    ,c.Address 
    ,c.email  
    ,c.PhoneNo
+   ,R.RoleType
    ,u.hasActiveRole
    ,c.AgentId
   FROM Client_Detail C  
   INNER JOIN UserLogin_detail U ON U.userId = c.ClientId  
+  INNER JOIN Role_Detail R ON R.Id = U.roleId 
   WHERE Upper(U.Username) = Upper(@Username)  
 END  
 --insert into  UserLogin_detail values ('Ishank123', 'Ishank12#', 'avbdhfhfjhf', 2, 0, 'CL1234') 
