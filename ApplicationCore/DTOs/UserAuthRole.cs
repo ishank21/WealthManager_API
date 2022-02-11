@@ -11,7 +11,7 @@ namespace ApplicationCore.DTOs
     public class UserAuthRole
     {
         //[Key]
-        public int Isvalid { get; set; }
-        public string roletype { get; set; }
+        public int ?Isvalid { get; set; }
+        public string ?roletype { get; set; }
     }
 }

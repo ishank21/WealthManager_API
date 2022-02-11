@@ -44,7 +44,7 @@ namespace Identity_Service_API.Controllers.Client
                     return Ok(resp);
                 }
                 else
-                    return Unauthorized();
+                    return Unauthorized("No associated Accounts with a given clientId");
             }
             else
                 return BadRequest();

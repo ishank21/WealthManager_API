@@ -28,7 +28,7 @@ namespace Identity_Service_API.Controllers.Login
 
             var authVal = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
 
-            if (authVal != null)
+            if (authVal.Isvalid != null && authVal.roletype != null)
             {
                 if (authVal.Isvalid == 1 && (authVal.roletype == "Agent" || authVal.roletype == "Admin"))
                 {
