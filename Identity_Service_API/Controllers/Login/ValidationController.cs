@@ -26,13 +26,13 @@ namespace Identity_Service_API.Controllers.Login
                 return BadRequest();
             }
             var authVal = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
-            var roleValue = authVal.FirstOrDefault();
+            var roleValue = authVal;
             if (roleValue != null)
             {
                 if (roleValue.Isvalid == 1 && (roleValue.roletype == "Agent" || roleValue.roletype == "Admin"))
                 {
                     var user = await loginRepository.ValidateLoginDetails(auth.Username);
-                    if (user.Count <= 0)
+                    if (user == null)
                         return NotFound();
                     else
                         return Ok(user);
@@ -40,7 +40,7 @@ namespace Identity_Service_API.Controllers.Login
                 else if (roleValue.Isvalid == 1 && roleValue.roletype == "Client")
                 {
                     var user = await loginRepository.ValidateclientResponses(auth.Username);
-                    if (user.Count <= 0)
+                    if (user == null)
                         return NotFound();
                     else
                         return Ok(user);

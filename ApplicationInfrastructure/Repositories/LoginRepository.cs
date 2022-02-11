@@ -24,19 +24,19 @@ namespace ApplicationInfrastructure.Repositories
             this.storeContext = storeContext;
             this.mapper = mapper;
         }
-        public async Task<List<UserResponse>> ValidateLoginDetails(string username)
+        public async Task<UserResponse> ValidateLoginDetails(string username)
         {
-            var response = await storeContext.UR.FromSql("Exec getUserDetailOnRoleBasis @Username",new SqlParameter("@Username", username)).ToListAsync();
+            var response = await storeContext.UR.FromSql("Exec getUserDetailOnRoleBasis @Username",new SqlParameter("@Username", username)).FirstOrDefaultAsync();
             return response;
         }
-        public async Task<List<UserAuthRole>> IsAuthenticated(string Username, string password)
+        public async Task<UserAuthRole> IsAuthenticated(string Username, string password)
         {
-            var response = await storeContext.UAR.FromSql("Exec isauthenticate @Username,@password", new SqlParameter("@Username", Username), new SqlParameter("@password", password)).AsNoTracking().ToListAsync();
+            var response = await storeContext.UAR.FromSql("Exec isauthenticate @Username,@password", new SqlParameter("@Username", Username), new SqlParameter("@password", password)).AsNoTracking().FirstOrDefaultAsync();
             return response;
         }
-        public async Task<List<ClientResponse>> ValidateclientResponses(string username)
+        public async Task<ClientResponse> ValidateclientResponses(string username)
         {
-            var response = await storeContext.CR.FromSql("Exec getUserDetailOnRoleBasis @Username", new SqlParameter("@Username", username)).ToListAsync();
+            var response = await storeContext.CR.FromSql("Exec getUserDetailOnRoleBasis @Username", new SqlParameter("@Username", username)).FirstOrDefaultAsync();
             return response;
         }
     }
