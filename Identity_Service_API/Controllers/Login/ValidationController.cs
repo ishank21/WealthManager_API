@@ -49,5 +49,27 @@ namespace Identity_Service_API.Controllers.Login
             }
             return Unauthorized("Username or password is not correct");
         }
+
+        [Route("GetUserByName/{userName}")]
+        [HttpGet]
+        public async Task<IActionResult> GetUserDetailsByName(string userName)
+        {
+            var user = await loginRepository.ValidateLoginDetails(userName);
+            if (user == null)
+                return NotFound();
+            else
+                return Ok(user);
+        }
+
+        [Route("GetClientByName/{userName}")]
+        [HttpGet]
+        public async Task<IActionResult> GetClientDetailsByName(string userName)
+        {
+            var user = await loginRepository.ValidateclientResponses(userName);
+            if (user == null)
+                return NotFound();
+            else
+                return Ok(user);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace ApplicationCore.DTOs
         public string Email { get; set; }
         public string PhoneNo { get; set; }
         public string RoleType { get; set; }
-        public bool hasActiveRole { get; set; }
+        public bool HasActiveRole { get; set; }
         public string AgentId { get; set; }
     }
 }

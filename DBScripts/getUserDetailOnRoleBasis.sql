@@ -1,8 +1,15 @@
+USE [AM_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[getUserDetailOnRoleBasis]    Script Date: 13-02-2022 15:32:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
 ALTER PROCEDURE [dbo].[getUserDetailOnRoleBasis] @Username NVARCHAR(15)  
 AS  
 BEGIN  
-  --Exec getUserDetailOnRoleBasis 'Ishank123'
+  --Exec getUserDetailOnRoleBasis 'UR1234'
  DECLARE @Emp_Role VARCHAR(10);  
   
   SELECT @Emp_Role = (  

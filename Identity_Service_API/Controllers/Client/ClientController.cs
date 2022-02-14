@@ -16,7 +16,9 @@ namespace Identity_Service_API.Controllers.Client
         {
             this.clientRepository = clientRepository;
         }
-        [HttpGet]
+
+        [Route("GetClientByAgent/{agentId}")]
+        [HttpGet]       
         public async Task<IActionResult> GetClientDetailsByAgentId(string agentId)
         {
             if (agentId != null)
@@ -33,7 +35,7 @@ namespace Identity_Service_API.Controllers.Client
                 return BadRequest();
         }
         [HttpGet]
-        [Route("AccountDetailByClientID")]
+        [Route("AccountDetailByClientID/{clientId}")]
         public async Task<IActionResult> GetAccountDetailsByClientId(string clientId)
         {
             if (clientId != null)
