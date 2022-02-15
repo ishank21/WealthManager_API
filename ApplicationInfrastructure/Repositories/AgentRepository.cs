@@ -30,12 +30,10 @@ namespace ApplicationInfrastructure.Repositories
             return response;
 
         }
-       public async Task<int> InsertAgentDetails(InsertAgentDetailsDTO agentDetails)
+        public async Task<int> InsertAgentDetails(InsertAgentDetailsDTO agentDetails)
         {
             if (storeContext != null)
             {
-                Random rand = new Random();
-
                 UserLogin newLogin = new UserLogin();
                 newLogin.userName = agentDetails.UserName;
                 newLogin.Password = agentDetails.Password;
@@ -58,7 +56,7 @@ namespace ApplicationInfrastructure.Repositories
                 return 1;
             }
             else
-            return 0;
+                return 0;
 
         }
     }
