@@ -11,5 +11,7 @@ namespace ApplicationCore.Interfaces
     {
         Task<List<ClientResponse>> GetClientDetailsForAgent(string agentId);
         Task<List<ClientAccountDetails>> GetAccountDetailsByClientId(string clientId);
+        Task<int> InsertClientDetails(InsertClientDetailsDTO agentInfo);
+        Task<int> InsertClientAccountDetails(InsertClientAccountDetails Clientdetails);
     }
 }

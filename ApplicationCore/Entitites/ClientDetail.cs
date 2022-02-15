@@ -22,9 +22,9 @@ namespace ApplicationCore.Entitites
     }
     public enum ClientType
     {
-        Corporate,
-        DonorAdvisedFund,
-        JointFamily,
-        Personal
+        Corporate = 1,
+        DonorAdvisedFund = 2,
+        JointFamily = 3,
+        Personal = 4
     }
 }

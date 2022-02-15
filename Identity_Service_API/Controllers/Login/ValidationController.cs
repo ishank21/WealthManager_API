@@ -25,26 +25,28 @@ namespace Identity_Service_API.Controllers.Login
             {
                 return BadRequest();
             }
-
+            else
+            { 
             var authVal = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
 
-            if (authVal.Isvalid != null && authVal.roletype != null)
-            {
-                if (authVal.Isvalid == 1 && (authVal.roletype == "Agent" || authVal.roletype == "Admin"))
+                if (authVal.Isvalid != null && authVal.roletype != null)
                 {
-                    var user = await loginRepository.ValidateLoginDetails(auth.Username);
-                    if (user == null)
-                        return NotFound();
-                    else
-                        return Ok(user);
-                }
-                else if (authVal.Isvalid == 1 && authVal.roletype == "Client")
-                {
-                    var user = await loginRepository.ValidateclientResponses(auth.Username);
-                    if (user == null)
-                        return NotFound();
-                    else
-                        return Ok(user);
+                    if (authVal.Isvalid == 1 && (authVal.roletype == "Agent" || authVal.roletype == "Admin"))
+                    {
+                        var user = await loginRepository.ValidateLoginDetails(auth.Username);
+                        if (user == null)
+                            return NotFound();
+                        else
+                            return Ok(user);
+                    }
+                    else if (authVal.Isvalid == 1 && authVal.roletype == "Client")
+                    {
+                        var user = await loginRepository.ValidateclientResponses(auth.Username);
+                        if (user == null)
+                            return NotFound();
+                        else
+                            return Ok(user);
+                    }
                 }
             }
             return Unauthorized("Username or password is not correct");

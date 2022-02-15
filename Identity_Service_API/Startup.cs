@@ -41,7 +41,7 @@ namespace Identity_Service_API
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             //services.AddScoped<ILog, Log>();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddHttpClient();
             services.AddMvcCore().AddApiExplorer();
             services.AddSwaggerGen(x=> {
