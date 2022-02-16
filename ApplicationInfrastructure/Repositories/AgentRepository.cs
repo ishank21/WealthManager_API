@@ -31,7 +31,7 @@ namespace ApplicationInfrastructure.Repositories
                 var response = await storeContext.AR.FromSql("Select * from getAgents").AsNoTracking().ToListAsync();
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -67,7 +67,7 @@ namespace ApplicationInfrastructure.Repositories
                 else
                     return 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return -1;
             }

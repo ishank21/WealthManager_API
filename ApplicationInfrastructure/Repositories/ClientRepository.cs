@@ -31,7 +31,7 @@ namespace ApplicationInfrastructure.Repositories
                 var response = await storeContext.CR.FromSql("Select * from getClientDetailsForAgent(@AgentId)", new SqlParameter("@AgentId", agentId)).AsNoTracking().ToListAsync();
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -43,7 +43,7 @@ namespace ApplicationInfrastructure.Repositories
                 var response = await storeContext.CAD.FromSql("Select * from getAccountInformationForClient(@ClientId)", new SqlParameter("@ClientId", clientId)).AsNoTracking().ToListAsync();
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -86,7 +86,7 @@ namespace ApplicationInfrastructure.Repositories
                 else
                     return 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return -1;
             }
@@ -121,7 +121,7 @@ namespace ApplicationInfrastructure.Repositories
                 else
                     return 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return -1;
             }
