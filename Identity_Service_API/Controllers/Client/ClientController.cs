@@ -42,7 +42,7 @@ namespace Identity_Service_API.Controllers.Client
             if (clientId != null)
             {
                 var resp = await clientRepository.GetAccountDetailsByClientId(clientId);
-                if (resp.Count > 0)
+                if (resp.Count > 0 && resp != null)
                 {
                     return Ok(resp);
                 }
@@ -66,10 +66,12 @@ namespace Identity_Service_API.Controllers.Client
                 var insertDetails = await clientRepository.InsertClientDetails(ClientDetails);
                 if (insertDetails > 0)
                 {
-                    return Ok(insertDetails);
+                    return Ok("Client Successfully Inserted.");
                 }
                 else
-                    return BadRequest();
+                {
+                    return BadRequest("Error while Adding client.");
+                }
             }
         }
         [HttpPost]
@@ -85,11 +87,11 @@ namespace Identity_Service_API.Controllers.Client
                 var insertDetails = await clientRepository.InsertClientAccountDetails(ClientDetails);
                 if (insertDetails > 0)
                 {
-                    return Ok(insertDetails);
+                    return Ok("ClientAccount Successfully Inserted");
                 }
                 else
                 {
-                    return BadRequest();
+                    return BadRequest("Error while Adding clientAccount Detail.");
                 }
             }
         }

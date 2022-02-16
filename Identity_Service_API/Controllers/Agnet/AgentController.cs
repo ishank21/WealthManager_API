@@ -20,7 +20,7 @@ namespace Identity_Service_API.Controllers.Agnet
         public async Task<IActionResult> GetAgentDetails()
         {
             var resp = await agentRepository.GetAgentDetails();
-            if (resp.Count > 0)
+            if (resp.Count > 0 && resp != null)
             {
                 return Ok(resp);
             }
@@ -40,10 +40,10 @@ namespace Identity_Service_API.Controllers.Agnet
                 var insertDetails = await agentRepository.InsertAgentDetails(AgentDetails);
                 if (insertDetails > 0)
                 {
-                    return Ok(insertDetails);
+                    return Ok("Agent Successfully Inserted.");
                 }
                 else
-                    return BadRequest();
+                    return BadRequest("Error while Adding Agent.");
             }
         }
     }

@@ -10,7 +10,7 @@ namespace ApplicationCore.DTOs
         [Required]
         public string AccountId { get; set; }
         [Required]
-        public string CustodainId { get; set; }
+        public string CustodianId { get; set; }
         [Required]
         public string CustodianName { get; set; }
         [Required]

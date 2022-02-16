@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationInfrastructure.Migrations
 {
-    public partial class intilb : Migration
+    public partial class initialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,6 +116,55 @@ namespace ApplicationInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_UserLogin_Detail", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agent_Detail_Email",
+                table: "Agent_Detail",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agent_Detail_PhoneNo",
+                table: "Agent_Detail",
+                column: "PhoneNo",
+                unique: true,
+                filter: "[PhoneNo] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Client_Detail_Email",
+                table: "Client_Detail",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Client_Detail_PhoneNo",
+                table: "Client_Detail",
+                column: "PhoneNo",
+                unique: true,
+                filter: "[PhoneNo] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientAccount_Detail_ClientId",
+                table: "ClientAccount_Detail",
+                column: "ClientId",
+                unique: true,
+                filter: "[ClientId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLogin_Detail_UserId",
+                table: "UserLogin_Detail",
+                column: "UserId",
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLogin_Detail_userName",
+                table: "UserLogin_Detail",
+                column: "userName",
+                unique: true,
+                filter: "[userName] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

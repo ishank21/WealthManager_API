@@ -26,37 +26,51 @@ namespace ApplicationInfrastructure.Repositories
         }
         public async Task<List<AgentResponse>> GetAgentDetails()
         {
-            var response = await storeContext.AR.FromSql("Select * from getAgents").AsNoTracking().ToListAsync();
-            return response;
+            try
+            {
+                var response = await storeContext.AR.FromSql("Select * from getAgents").AsNoTracking().ToListAsync();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
         }
         public async Task<int> InsertAgentDetails(InsertAgentDetailsDTO agentDetails)
         {
-            if (storeContext != null)
+            try
             {
-                UserLogin newLogin = new UserLogin();
-                newLogin.userName = agentDetails.UserName;
-                newLogin.Password = agentDetails.Password;
-                newLogin.guidId = Guid.NewGuid().ToString();
-                newLogin.RoleId = CommonMethods.GetRoleType(agentDetails.RoleType);
-                newLogin.hasActiveRole = agentDetails.HasActiveRole;
-                newLogin.UserId = "AG" + CommonMethods.GenerateRandomNo().ToString();
-                storeContext.UserLogin_Detail.Add(newLogin);
+                if (storeContext != null)
+                {
+                    UserLogin newLogin = new UserLogin();
+                    newLogin.userName = agentDetails.UserName;
+                    newLogin.Password = agentDetails.Password;
+                    newLogin.guidId = Guid.NewGuid().ToString();
+                    newLogin.RoleId = CommonMethods.GetRoleType(agentDetails.RoleType);
+                    newLogin.hasActiveRole = agentDetails.HasActiveRole;
+                    newLogin.UserId = "AG" + CommonMethods.GenerateRandomNo().ToString();
+                    storeContext.UserLogin_Detail.Add(newLogin);
 
-                AgentDetail agentDetail = new AgentDetail();
-                agentDetail.FirstName = agentDetails.FirstName;
-                agentDetail.LastName = agentDetails.LastName;
-                agentDetail.Email = agentDetails.Email;
-                agentDetail.Address = agentDetails.Address;
-                agentDetail.PhoneNo = agentDetails.PhoneNo;
-                agentDetail.AgentId = newLogin.UserId;
-                storeContext.Agent_Detail.Add(agentDetail);
+                    AgentDetail agentDetail = new AgentDetail();
+                    agentDetail.FirstName = agentDetails.FirstName;
+                    agentDetail.LastName = agentDetails.LastName;
+                    agentDetail.Email = agentDetails.Email;
+                    agentDetail.Address = agentDetails.Address;
+                    agentDetail.PhoneNo = agentDetails.PhoneNo;
+                    agentDetail.AgentId = newLogin.UserId;
+                    storeContext.Agent_Detail.Add(agentDetail);
 
-                await storeContext.SaveChangesAsync();
-                return 1;
+                    await storeContext.SaveChangesAsync();
+                    return 1;
+                }
+                else
+                    return 0;
             }
-            else
-                return 0;
+            catch (Exception ex)
+            {
+                return -1;
+            }
 
         }
     }

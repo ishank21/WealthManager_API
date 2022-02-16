@@ -62,6 +62,14 @@ namespace ApplicationInfrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("PhoneNo")
+                        .IsUnique()
+                        .HasFilter("[PhoneNo] IS NOT NULL");
+
                     b.ToTable("Agent_Detail");
                 });
 
@@ -93,6 +101,10 @@ namespace ApplicationInfrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId")
+                        .IsUnique()
+                        .HasFilter("[ClientId] IS NOT NULL");
+
                     b.ToTable("ClientAccount_Detail");
                 });
 
@@ -119,6 +131,14 @@ namespace ApplicationInfrastructure.Migrations
                     b.Property<string>("PhoneNo");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("PhoneNo")
+                        .IsUnique()
+                        .HasFilter("[PhoneNo] IS NOT NULL");
 
                     b.ToTable("Client_Detail");
                 });
@@ -157,6 +177,14 @@ namespace ApplicationInfrastructure.Migrations
                     b.Property<string>("userName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.HasIndex("userName")
+                        .IsUnique()
+                        .HasFilter("[userName] IS NOT NULL");
 
                     b.ToTable("UserLogin_Detail");
                 });

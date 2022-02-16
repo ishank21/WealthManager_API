@@ -16,4 +16,4 @@ ProgramName,
 IsClosed  
 FROM ClientAccount_Detail where ClientID=@ClientId  
 
- insert into ClientAccount_Detail values('1234','3456','alpha','beta','CL1234','123456','32','12','ishankp',0)
+ --insert into ClientAccount_Detail values('1234','3456','alpha','beta','CL1234','123456','32','12','ishankp',0)

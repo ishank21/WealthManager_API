@@ -18,6 +18,14 @@ namespace ApplicationInfrastructure.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UserLogin>().HasIndex(p => new { p.userName}).IsUnique();
+            modelBuilder.Entity<UserLogin>().HasIndex(p => new { p.UserId }).IsUnique();
+            modelBuilder.Entity<AgentDetail>().HasIndex(p => new { p.Email}).IsUnique();
+            modelBuilder.Entity<AgentDetail>().HasIndex(p => new { p.PhoneNo }).IsUnique();
+            modelBuilder.Entity<ClientDetail>().HasIndex(p => new { p.Email }).IsUnique();
+            modelBuilder.Entity<ClientDetail>().HasIndex(p => new { p.PhoneNo }).IsUnique();
+            modelBuilder.Entity<ClientAccountDetail>().HasIndex(p => new {p.ClientId }).IsUnique();
+
             modelBuilder.Query<UserResponse>();
             modelBuilder.Query<ClientResponse>();
             modelBuilder.Query<UserAuthRole>();
