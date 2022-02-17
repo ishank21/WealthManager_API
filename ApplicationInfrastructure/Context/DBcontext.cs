@@ -26,6 +26,8 @@ namespace ApplicationInfrastructure.Context
             modelBuilder.Entity<ClientDetail>().HasIndex(p => new { p.PhoneNo }).IsUnique();
             modelBuilder.Entity<ClientAccountDetail>().HasIndex(p => new {p.ClientId }).IsUnique();
 
+           // modelBuilder.Entity<ClientDetail>().Property(a => a.ClientId).IsConcurrencyToken().ValueGeneratedOnAddOrUpdate();
+
             modelBuilder.Query<UserResponse>();
             modelBuilder.Query<ClientResponse>();
             modelBuilder.Query<UserAuthRole>();

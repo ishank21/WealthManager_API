@@ -95,5 +95,27 @@ namespace Identity_Service_API.Controllers.Client
                 }
             }
         }
+        [HttpPut]
+        [Route("UpdateClientDetails")]
+        public async Task<IActionResult> UpdateClientDetails([FromBody] UpdateClientDetailsDTO ClientDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var updateClient = await clientRepository.UpdateClientDetails(ClientDetails);
+                if (updateClient > 0)
+                {
+                    return Ok("Client Successfully Inserted.");
+                }
+                else
+                {
+                    return BadRequest("Error while Adding client.");
+                }
+            }
+        }
+
     }
 }

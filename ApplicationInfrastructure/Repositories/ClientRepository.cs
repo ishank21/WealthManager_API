@@ -69,12 +69,12 @@ namespace ApplicationInfrastructure.Repositories
                         storeContext.Client_Detail.Add(clientDetails);
 
                         UserLogin loginDetails = new UserLogin();
-                        loginDetails.UserId = clientDetails.AgentId;
+                        loginDetails.UserId = clientDetails.ClientId;
                         loginDetails.userName = agentInfo.Username;
                         loginDetails.Password = agentInfo.Password;
                         loginDetails.hasActiveRole = true;
                         loginDetails.RoleId = 2;
-                        loginDetails.guidId = new Guid().ToString();
+                        loginDetails.guidId = Guid.NewGuid().ToString();
                         storeContext.UserLogin_Detail.Add(loginDetails);
 
                         await storeContext.SaveChangesAsync();
@@ -120,6 +120,42 @@ namespace ApplicationInfrastructure.Repositories
                 }
                 else
                     return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+        public async Task<int> UpdateClientDetails(UpdateClientDetailsDTO Clientdetails)
+        {
+            try
+            {
+                if (storeContext != null)
+                {
+                    var entity = storeContext.Client_Detail.Where(x => x.ClientId == Clientdetails.ClientId).FirstOrDefault();
+                    if (entity != null)
+                    {
+                        entity.FirstName = Clientdetails.FirstName;
+                        entity.LastName = Clientdetails.LastName;
+                        entity.Email = Clientdetails.Email;
+                        entity.Address = Clientdetails.Address;
+                        entity.PhoneNo = Clientdetails.PhoneNo;
+                        entity.AgentId = Clientdetails.AgentId;
+                        entity.ClientId = Clientdetails.ClientId;
+                        entity.ClientType = (ClientType)Clientdetails.ClientType;
+
+                        await storeContext.SaveChangesAsync();
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return 0;
+                }
             }
             catch (Exception)
             {
