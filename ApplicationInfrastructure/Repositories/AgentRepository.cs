@@ -73,5 +73,6 @@ namespace ApplicationInfrastructure.Repositories
             }
 
         }
+       
     }
 }

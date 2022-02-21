@@ -108,11 +108,11 @@ namespace Identity_Service_API.Controllers.Client
                 var updateClient = await clientRepository.UpdateClientDetails(ClientDetails);
                 if (updateClient > 0)
                 {
-                    return Ok("Client Successfully Inserted.");
+                    return Ok("Client details Successfully Updated.");
                 }
                 else
                 {
-                    return BadRequest("Error while Adding client.");
+                    return BadRequest("Error while updating client Details.");
                 }
             }
         }

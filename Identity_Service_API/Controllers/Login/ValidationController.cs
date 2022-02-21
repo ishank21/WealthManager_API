@@ -73,5 +73,26 @@ namespace Identity_Service_API.Controllers.Login
             else
                 return Ok(user);
         }
+        [HttpPut]
+        [Route("UpdateUserDetails")]
+        public async Task<IActionResult> UpdateUserDetails([FromBody] UpdateUserDetailsDTO UserDetails)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var updateClient = await loginRepository.UpdateAgentDetails(UserDetails);
+                if (updateClient > 0)
+                {
+                    return Ok("User details Successfully Updated.");
+                }
+                else
+                {
+                    return BadRequest("Error while Updating user details.");
+                }
+            }
+        }
     }
 }
