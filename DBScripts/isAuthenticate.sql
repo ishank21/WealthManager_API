@@ -1,5 +1,4 @@
-Create PROCEDURE isAuthenticate @Username NVARCHAR(15)  
- ,@Password NVARCHAR(30)  
+Alter PROCEDURE isAuthenticate @Username NVARCHAR(15)  
 AS  
 BEGIN  
  DECLARE @IsValid INT = 0;  
