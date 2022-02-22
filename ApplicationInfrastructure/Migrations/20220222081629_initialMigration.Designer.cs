@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationInfrastructure.Migrations
 {
     [DbContext(typeof(DBcontext))]
-    [Migration("20220216190006_initialDB")]
-    partial class initialDB
+    [Migration("20220222081629_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,14 @@ namespace ApplicationInfrastructure.Migrations
                     b.Property<string>("PhoneNo");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("PhoneNo")
+                        .IsUnique()
+                        .HasFilter("[PhoneNo] IS NOT NULL");
 
                     b.ToTable("Admin_Detail");
                 });

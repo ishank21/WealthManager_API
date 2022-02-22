@@ -20,6 +20,8 @@ namespace ApplicationInfrastructure.Context
         {
             modelBuilder.Entity<UserLogin>().HasIndex(p => new { p.userName}).IsUnique();
             modelBuilder.Entity<UserLogin>().HasIndex(p => new { p.UserId }).IsUnique();
+            modelBuilder.Entity<AdminDetail>().HasIndex(p => new { p.Email }).IsUnique();
+            modelBuilder.Entity<AdminDetail>().HasIndex(p => new { p.PhoneNo }).IsUnique();
             modelBuilder.Entity<AgentDetail>().HasIndex(p => new { p.Email}).IsUnique();
             modelBuilder.Entity<AgentDetail>().HasIndex(p => new { p.PhoneNo }).IsUnique();
             modelBuilder.Entity<ClientDetail>().HasIndex(p => new { p.Email }).IsUnique();

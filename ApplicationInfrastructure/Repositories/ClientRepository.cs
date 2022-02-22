@@ -132,7 +132,7 @@ namespace ApplicationInfrastructure.Repositories
             {
                 if (storeContext != null)
                 {
-                    var entity = storeContext.Client_Detail.Where(x => x.ClientId == Clientdetails.ClientId).FirstOrDefault();
+                    var entity = storeContext.Client_Detail.Where(x => x.ClientId == Clientdetails.UserId).FirstOrDefault();
                     if (entity != null)
                     {
                         entity.FirstName = Clientdetails.FirstName;
@@ -141,7 +141,7 @@ namespace ApplicationInfrastructure.Repositories
                         entity.Address = Clientdetails.Address;
                         entity.PhoneNo = Clientdetails.PhoneNo;
                         entity.AgentId = Clientdetails.AgentId;
-                        entity.ClientId = Clientdetails.ClientId;
+                        entity.ClientId = Clientdetails.UserId;
                         entity.ClientType = (ClientType)Clientdetails.ClientType;
 
                         await storeContext.SaveChangesAsync();

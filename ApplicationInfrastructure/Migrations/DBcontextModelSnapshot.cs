@@ -39,6 +39,14 @@ namespace ApplicationInfrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("PhoneNo")
+                        .IsUnique()
+                        .HasFilter("[PhoneNo] IS NOT NULL");
+
                     b.ToTable("Admin_Detail");
                 });
 

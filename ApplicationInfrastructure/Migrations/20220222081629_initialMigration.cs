@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationInfrastructure.Migrations
 {
-    public partial class initialDB : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,6 +116,20 @@ namespace ApplicationInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_UserLogin_Detail", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admin_Detail_Email",
+                table: "Admin_Detail",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admin_Detail_PhoneNo",
+                table: "Admin_Detail",
+                column: "PhoneNo",
+                unique: true,
+                filter: "[PhoneNo] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agent_Detail_Email",

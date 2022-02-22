@@ -1,5 +1,7 @@
 ﻿using ApplicationCore.DTOs;
 using ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ namespace Identity_Service_API.Controllers.Agnet
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AgentController : ControllerBase
     {
         private readonly IAgentRepository agentRepository;

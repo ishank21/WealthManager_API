@@ -1,5 +1,7 @@
 ﻿using ApplicationCore.DTOs;
 using ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace Identity_Service_API.Controllers.Login
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ValidationController : ControllerBase
     {
         private readonly ILoginRepository loginRepository;
@@ -19,6 +22,7 @@ namespace Identity_Service_API.Controllers.Login
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> AuthenticateUser([FromBody] AuthUser auth)
         {
             if (!ModelState.IsValid)
