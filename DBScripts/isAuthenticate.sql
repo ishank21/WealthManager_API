@@ -13,7 +13,6 @@ set @isvalid=(
    SELECT 1
    FROM UserLogin_detail  
    WHERE Upper([UserName]) = upper(@Username)  
-    AND  [Password] = @Password  
 	)
 
    Set @Roletype = (SELECT R.RoleType
