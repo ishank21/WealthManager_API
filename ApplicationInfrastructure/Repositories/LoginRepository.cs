@@ -31,7 +31,7 @@ namespace ApplicationInfrastructure.Repositories
         }
         public async Task<UserAuthRole> IsAuthenticated(string Username)
         {
-            var response = await storeContext.UAR.FromSql("Exec isauthenticate @Username,@password", new SqlParameter("@Username", Username), new SqlParameter("@password", password)).FirstOrDefaultAsync();
+            var response = await storeContext.UAR.FromSql("Exec isauthenticate @Username,@password", new SqlParameter("@Username", Username)).FirstOrDefaultAsync();
             return response;
         }
         public async Task<ClientResponse> ValidateclientResponses(string username)

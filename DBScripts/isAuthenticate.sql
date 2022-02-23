@@ -1,5 +1,10 @@
-Create PROCEDURE isAuthenticate @Username NVARCHAR(15)  
- ,@Password NVARCHAR(30)  
+
+/****** Object:  StoredProcedure [dbo].[isAuthenticate]    Script Date: 23-02-2022 12:14:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[isAuthenticate] @Username NVARCHAR(15)  
 AS  
 BEGIN  
  DECLARE @IsValid INT = 0;  
@@ -12,8 +17,7 @@ Declare @AuthCred Table(isvalid int,Roletype varchar(max))
 set @isvalid=(
    SELECT 1
    FROM UserLogin_detail  
-   WHERE Upper([UserName]) = upper(@Username)  
-    AND  [Password] = @Password  
+   WHERE Upper([UserName]) = upper(@Username)
 	)
 
    Set @Roletype = (SELECT R.RoleType
