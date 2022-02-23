@@ -8,6 +8,8 @@ namespace ApplicationCore.DTOs
     public class InsertClientDetailsDTO
     {
         [Required]
+        public string UserId { get; set; }
+        [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }

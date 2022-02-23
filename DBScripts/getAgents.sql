@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER View [dbo].[getAgents] as
+CREATE View [dbo].[getAgents] as
 select 
 ad.Id,
 ul.userName,

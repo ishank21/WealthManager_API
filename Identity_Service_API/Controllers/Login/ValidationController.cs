@@ -21,9 +21,9 @@ namespace Identity_Service_API.Controllers.Login
             this.loginRepository = loginRepository;
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> AuthenticateUser([FromBody] AuthUser auth)
+        [HttpGet]
+        [Route("{userName}")]
+        public async Task<IActionResult> AuthenticateUser(string userName)
         {
             if (!ModelState.IsValid)
             {
@@ -31,13 +31,13 @@ namespace Identity_Service_API.Controllers.Login
             }
             else
             { 
-            var authVal = await loginRepository.IsAuthenticated(auth.Username, auth.Password);
+            var authVal = await loginRepository.IsAuthenticated(userName);
 
                 if (authVal.Isvalid != null && authVal.roletype != null)
                 {
                     if (authVal.Isvalid == 1 && (authVal.roletype == "Agent" || authVal.roletype == "Admin"))
                     {
-                        var user = await loginRepository.ValidateLoginDetails(auth.Username);
+                        var user = await loginRepository.ValidateLoginDetails(userName);
                         if (user == null)
                             return NotFound();
                         else
@@ -45,7 +45,7 @@ namespace Identity_Service_API.Controllers.Login
                     }
                     else if (authVal.Isvalid == 1 && authVal.roletype == "Client")
                     {
-                        var user = await loginRepository.ValidateclientResponses(auth.Username);
+                        var user = await loginRepository.ValidateclientResponses(userName);
                         if (user == null)
                             return NotFound();
                         else

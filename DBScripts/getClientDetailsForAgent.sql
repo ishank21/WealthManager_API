@@ -1,4 +1,4 @@
-ALTER FUNCTION [dbo].[getClientDetailsForAgent] (@AgentId Varchar(255))  
+CREATE FUNCTION [dbo].[getClientDetailsForAgent] (@AgentId Varchar(255))  
 RETURNS TABLE  
 AS  
 RETURN  

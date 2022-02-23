@@ -64,7 +64,7 @@ namespace ApplicationInfrastructure.Repositories
                         clientDetails.Address = agentInfo.Address;
                         clientDetails.PhoneNo = agentInfo.PhoneNo;
                         clientDetails.AgentId = agentInfo.AgentId;
-                        clientDetails.ClientId = "CL" + CommonMethods.GenerateRandomNo().ToString();
+                        clientDetails.ClientId = agentInfo.UserId;//"CL" + CommonMethods.GenerateRandomNo().ToString();
                         clientDetails.ClientType = (ClientType)agentInfo.ClientType;
                         storeContext.Client_Detail.Add(clientDetails);
 

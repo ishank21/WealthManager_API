@@ -49,7 +49,7 @@ namespace ApplicationInfrastructure.Repositories
                     newLogin.guidId = Guid.NewGuid().ToString();
                     newLogin.RoleId = CommonMethods.GetRoleType(agentDetails.RoleType);
                     newLogin.hasActiveRole = agentDetails.HasActiveRole;
-                    newLogin.UserId = "AG" + CommonMethods.GenerateRandomNo().ToString();
+                    newLogin.UserId = agentDetails.UserId;//"AG" + CommonMethods.GenerateRandomNo().ToString();
                     storeContext.UserLogin_Detail.Add(newLogin);
 
                     AgentDetail agentDetail = new AgentDetail();

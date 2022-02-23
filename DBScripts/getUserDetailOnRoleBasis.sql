@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[getUserDetailOnRoleBasis] @Username NVARCHAR(15)  
+CREATE PROCEDURE [dbo].[getUserDetailOnRoleBasis] @Username NVARCHAR(15)  
 AS  
 BEGIN  
   --Exec getUserDetailOnRoleBasis 'UR1234'

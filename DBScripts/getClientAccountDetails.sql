@@ -1,4 +1,4 @@
-Alter FUNCTION getAccountInformationForClient (@ClientId Varchar(255))  
+CREATE FUNCTION getAccountInformationForClient (@ClientId Varchar(255))  
 RETURNS TABLE  
 AS  
 RETURN  
