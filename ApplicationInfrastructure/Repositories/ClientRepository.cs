@@ -71,7 +71,7 @@ namespace ApplicationInfrastructure.Repositories
                         UserLogin loginDetails = new UserLogin();
                         loginDetails.UserId = clientDetails.ClientId;
                         loginDetails.userName = agentInfo.Username;
-                        loginDetails.Password = agentInfo.Password;
+                       // loginDetails.Password = agentInfo.Password;
                         loginDetails.hasActiveRole = true;
                         loginDetails.RoleId = 2;
                         loginDetails.guidId = Guid.NewGuid().ToString();
