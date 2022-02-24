@@ -12,7 +12,6 @@ namespace ApplicationCore.Entitites
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string userName { get; set; }
-        public string Password { get; set; }
         public string guidId { get; set; }
         public int RoleId { get; set; }
         public bool hasActiveRole { get; set; }

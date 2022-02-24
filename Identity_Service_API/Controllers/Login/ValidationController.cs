@@ -53,7 +53,7 @@ namespace Identity_Service_API.Controllers.Login
                     }
                 }
             }
-            return Unauthorized("Username or password is not correct");
+            return Unauthorized("User not found");
         }
 
         [Route("GetUserByName/{userName}")]

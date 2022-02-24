@@ -4,7 +4,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[isAuthenticate] @Username NVARCHAR(15)  
+CREATE PROCEDURE [dbo].[isAuthenticate] @Username NVARCHAR(15)  
 AS  
 BEGIN  
  DECLARE @IsValid INT = 0;  

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationInfrastructure.Migrations
 {
     [DbContext(typeof(DBcontext))]
-    [Migration("20220223053917_initialmigration")]
-    partial class initialmigration
+    [Migration("20220224072318_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,8 +173,6 @@ namespace ApplicationInfrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Password");
 
                     b.Property<int>("RoleId");
 

@@ -45,7 +45,6 @@ namespace ApplicationInfrastructure.Repositories
                 {
                     UserLogin newLogin = new UserLogin();
                     newLogin.userName = agentDetails.UserName;
-                    //newLogin.Password = agentDetails.Password;
                     newLogin.guidId = Guid.NewGuid().ToString();
                     newLogin.RoleId = CommonMethods.GetRoleType(agentDetails.RoleType);
                     newLogin.hasActiveRole = agentDetails.HasActiveRole;

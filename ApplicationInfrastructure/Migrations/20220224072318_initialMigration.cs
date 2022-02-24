@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationInfrastructure.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,7 +106,6 @@ namespace ApplicationInfrastructure.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     userName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
                     guidId = table.Column<string>(nullable: true),
                     RoleId = table.Column<int>(nullable: false),
                     hasActiveRole = table.Column<bool>(nullable: false),

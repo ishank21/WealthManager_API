@@ -172,8 +172,6 @@ namespace ApplicationInfrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Password");
-
                     b.Property<int>("RoleId");
 
                     b.Property<string>("UserId");
